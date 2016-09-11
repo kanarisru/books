@@ -1,0 +1,29 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2><span>Список книг</span></h2>
+        <span flex></span>
+    </div>
+</md-toolbar>
+
+
+<md-content flex layout-padding>
+
+    <md-grid-list
+            md-cols-xs="1"
+            md-cols-sm="2"
+            md-cols-md="4"
+            md-cols-gt-md="6"
+            md-row-height-gt-md="1:1"
+            md-row-height="2:2"
+            md-gutter="12px"
+            md-gutter-gt-sm="8px">
+
+        <md-grid-tile class="book-item" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="item in vm.list"
+                      bg-book="{{item.cover}}" bg-mock="/img/MockCover.jpg"><a href="/book/{{item.id}}">
+
+            <md-grid-tile-footer><h3 ng-bind="item.title.default"></h3></md-grid-tile-footer>
+        </a>
+        </md-grid-tile>
+
+    </md-grid-list>
+</md-content>

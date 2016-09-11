@@ -1,0 +1,76 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <md-button class="md-raised"  ng-click="vm.goList()">Смотреть все</md-button>
+        <h3><span ng-bind="vm.book.title.default"></span></h3>
+        <span flex></span>
+
+
+    </div>
+</md-toolbar>
+<md-content flex layout-padding ng-if="vm.book">
+
+
+    <div layout="row" layout-xs="column">
+        <div  flex="100">
+            <h1>{{vm.book.title.default}}</h1>
+        </div>
+    </div>
+    <div layout="row" layout-xs="column">
+
+        <div  flex-lg="50" flex-sm="100" layout-margin>
+            <img flex class="book-cover-image" src-book="{{vm.book.cover}}" src-mock="/img/MockCover.jpg" alt="{{vm.book.title.default}}">
+            <p ng-if="vm.book.description.default" ng-bind-html="vm.book.description.default | plain"></p>
+            <p ng-if="!vm.book.description.default"><i>Описание отсутствует</i></p>
+        </div>
+        <div flex-lg="50"  flex-sm="100" layout-margin>
+            <md-list flex>
+                <md-list-item class="md-2-line" ng-if="vm.book.options.Publisher">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>Издатель:</h3>
+                        <p>{{vm.book.options.Publisher}}</p>
+                    </div>
+                </md-list-item>
+
+                <md-list-item class="md-2-line" ng-if="vm.book.options.ISBN">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>ISBN:</h3>
+                        <p>{{vm.book.options.ISBN}}</p>
+                    </div>
+                </md-list-item>
+
+
+                <md-list-item class="md-2-line" ng-if="vm.book.options.authors">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>Авторы:</h3>
+                        <p>{{vm.book.options.authors}}</p>
+                    </div>
+                </md-list-item>
+
+                <md-list-item class="md-2-line" ng-if="vm.bundles.length>0">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>Файлы</h3>
+                        <p ng-repeat="bundle in vm.bundles" ng-if="bundle.resourceId">
+                            <a href="http://storage.aggregion.com/api/files/{{bundle.resourceId}}/shared/data" target="_blank" title="Попытка скачать">Версия {{bundle.version}}</a>
+                            <!-- https://ds.aggregion.com/api/public/catalog/{{vm.book.id}}/bundles/{{bundle.id}}/signature -->
+                        </p>
+                    </div>
+                </md-list-item>
+
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>Поддерживаемые платформы</h3>
+                        <p ng-repeat="platform in vm.book.platformSupport" ng-bind="platform"></p>
+                    </div>
+                </md-list-item>
+
+
+            </md-list>
+
+
+
+        </div>
+
+    </div>
+
+
+</md-content>
